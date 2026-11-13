@@ -1,0 +1,18 @@
+[Unit]
+Description=Mini App Telegram boti (aiogram)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=miniapp
+Group=miniapp
+WorkingDirectory=/opt/miniapp-games
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=/opt/miniapp-games/.venv/bin/python -m server.bot
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+ProtectSystem=full
+
+[Install]
+WantedBy=multi-user.target

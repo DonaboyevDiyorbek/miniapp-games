@@ -1,0 +1,19 @@
+[Unit]
+Description=Mini App o'yinlar serveri (FastAPI)
+After=network.target
+
+[Service]
+User=miniapp
+Group=miniapp
+WorkingDirectory=/opt/miniapp-games
+Environment=PYTHONDONTWRITEBYTECODE=1
+# DIQQAT: faqat BITTA jarayon (--workers qo'shmang): xonalar xotirada turadi
+ExecStart=/opt/miniapp-games/.venv/bin/uvicorn server.main:app --host 127.0.0.1 --port 8000
+Restart=always
+RestartSec=3
+NoNewPrivileges=true
+ProtectSystem=full
+ReadWritePaths=/opt/miniapp-games/data
+
+[Install]
+WantedBy=multi-user.target
